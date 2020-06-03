@@ -42,6 +42,9 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+
+     Closure is needed for a function to work properly. If there is not closure, then the function does not have anything to refer to when it is called to look for something outside of the scope. 
+
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -63,8 +66,18 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+
+     Closure is used when const dansRoll and const zoesRoll are declared outside of the scope of the function making them accessible globally.
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+
+     Since it is called outside of the scope of the function, the function will not reset when it is called a second time. The name being called will always be the same but the number rolled could be greater than 6 since the function does not reset when it is called a second time.
+
 c. What is the lexical scope of `newRoll`? 
+
+     const dansRoll = personalDice("Dan");
+
+     const zoesRoll = personalDice("Zoe");
 
 ### Task 3 - Stretch Goals
 
