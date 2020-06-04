@@ -93,21 +93,21 @@ finalScore(inning, 9) might return:
 
 
 
-function finalScore(inning, nine){
+function finalScore(score, rounds){
   let max = 15;
   let min = 0;
 
   let game = {
-    "homeTeam": Math.floor(Math.random() * (max - min)),    
-    "awayTeam": Math.floor(Math.random() * (max - min))
+    "Home": Math.floor(Math.random() * (max - min)),    
+    "Away": Math.floor(Math.random() * (max - min))
       }    
 
   function inning(){
 
-    for(let i=0; i < nine; i++){
+    for(let i=0; i < rounds; i++){
 
-    game.homeTeam += points;
-    game.awayTeam += points;
+    game.Home += points;
+    game.Away += points;
 
     }        
   }
@@ -136,7 +136,7 @@ and returns the score at each point in the game, like so:
 
 Final Score: 6 - 10 */
 
-function scoreboard(inning, nine) {
+function scoreboard(inning, rounds) {
 
   let max = 3;
   let min = 0;
@@ -187,8 +187,8 @@ function scoreboard(inning, nine) {
       }
 
   let FinalScore = {
-    H: Math.floor(Math.random() * (max - min)) + EighthInning.H,   
-    A: Math.floor(Math.random() * (max - min)) + EighthInning.A
+    H: NinthInning.H,   
+    A: NinthInning.A
   }
 
   function inning(){
@@ -217,7 +217,7 @@ function scoreboard(inning, nine) {
      console.log("7th Inning:",SeventhInning.H, "-",SeventhInning.A);
      console.log("8th Inning:",EighthInning.H, "-",EighthInning.A);
      console.log("9th Inning:",NinthInning.H, "-",NinthInning.A);
-     console.log("Final Score:",NinthInning.H, "-", NinthInning.A);
+     console.log("Final Score:",FinalScore.H, "-", FinalScore.A);
 }
 
 console.log(scoreboard(inning, 9));
