@@ -222,3 +222,32 @@ function scoreboard(inning, rounds) {
 
 console.log(scoreboard(inning, 9));
 
+
+
+
+// function inning() {
+//   let max = 3;
+//   let min = 0;
+//   let score = Math.floor(Math.random() * (max - min));
+//   return score;
+// }
+
+// function scoreboard(inning, numInnings) {
+//   let max = 3;
+//   let min = 0;
+//   let homeTeam = Math.floor (Math.random() *(max - min));
+//   let awayTeam = Math.floor(Math.random() * (max - min));
+//   let runsPerInning = {
+//     "Home" : homeTeam,
+//     "Away" : awayTeam
+//   }
+
+//   for (let i = 1; i < numInnings; i++) {
+//     homeTeam = homeTeam + inning();
+//     awayTeam = awayTeam + inning();
+//     console.log(runsPerInning);
+//   }
+//   return runsPerInning;
+// }
+
+// console.log(scoreboard(inning, 9));
