@@ -28,7 +28,7 @@ function processFirstItem(stringList, callback) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
- * counter1 is outside the scope of the function while counter2 is outside of the scope of the function.
+ * counter1 is outside the scope of the function while counter2 is inside of the scope of the function.
  * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
@@ -94,28 +94,20 @@ finalScore(inning, 9) might return:
 
 */ 
 
-
-
-function finalScore(score, rounds){
-  let max = 15;
-  let min = 0;
-
-  let game = {
-    "Home": Math.floor(Math.random() * (max - min)),    
-    "Away": Math.floor(Math.random() * (max - min))
-      }    
-
-  function inning(){
-
-    for(let i=0; i < rounds; i++){
-
-    game.Home += points;
-    game.Away += points;
-
-    }        
+function finalScore(inning, rounds){
+ 
+  let finalScore = {
+    "Home": 0,
+    "Away": 0,
   }
-  return game;
-}
+    
+    for(let i=0; i < rounds; i++){
+      finalScore["Home"] += inning(0,3);
+      finalScore["Away"] += inning(0,3);        
+  }
+  return finalScore;
+}  
+
 console.log(finalScore(inning, 9));
 
 /* Task 4: 
@@ -139,88 +131,22 @@ and returns the score at each point in the game, like so:
 
 Final Score: 6 - 10 */
 
-function scoreboard(innings, rounds) {
-
-  let max = 3;
-  let min = 0;
-
-  let FirstInning = {
-    H: Math.floor(Math.random() * (max - min)),   
-    A: Math.floor(Math.random() * (max - min))
-      }
-      
-  let SecondInning = {
-    H: Math.floor(Math.random() * (max - min)) + FirstInning.H,   
-    A: Math.floor(Math.random() * (max - min)) + FirstInning.A
-      }
-
-  let ThirdInning = {
-    H: Math.floor(Math.random() * (max - min)) + SecondInning.H,   
-    A: Math.floor(Math.random() * (max - min)) + SecondInning.A
-      }
-
-  let FourthInning = {
-    H: Math.floor(Math.random() * (max - min)) + ThirdInning.H,   
-    A: Math.floor(Math.random() * (max - min)) + ThirdInning.A
-      }
-
-  let FifthInning = {
-    H: Math.floor(Math.random() * (max - min)) + FourthInning.H,   
-    A: Math.floor(Math.random() * (max - min)) + FourthInning.A
-      }
-
-  let SixthInning = {
-    H: Math.floor(Math.random() * (max - min)) + FifthInning.H,   
-    A: Math.floor(Math.random() * (max - min)) + FifthInning.A
-      }
-
-  let SeventhInning = {
-    H: Math.floor(Math.random() * (max - min)) + SixthInning.H,   
-    A: Math.floor(Math.random() * (max - min)) + SixthInning.A
-      }
-
-  let EighthInning = {
-    H: Math.floor(Math.random() * (max - min)) + SeventhInning.H,   
-    A: Math.floor(Math.random() * (max - min)) + SeventhInning.A
-      }
-
-  let NinthInning = {
-    H: Math.floor(Math.random() * (max - min)) + EighthInning.H,   
-    A: Math.floor(Math.random() * (max - min)) + EighthInning.A
-      }
-
-  let FinalScore = {
-    H: NinthInning.H,   
-    A: NinthInning.A
+function scoreboard(inning, rounds) {
+  let scoreboard = {
+    "Home": {},
+    "Away": {},
   }
 
-  function inning(){
-
-    for(let i=0; i < nine; i++){
-
-      FirstInning += points,
-      SecondInning += points,
-      ThirdInning += points,
-      FourthInning += points,
-      FifthInning += points,
-      SixthInning += points,
-      SeventhInning += points,
-      EighthInning += points,
-      NinthInning += points;
-      FinalScore += points;
-    
-    } 
+  for (i=0; i<rounds; i++) {
+    scoreboard["Home"][`Inning ${i+1}`] = inning(0,3) + (scoreboard["Home"][`Inning ${i}`] || 0); 
+    scoreboard["Away"][`Inning ${i+1}`] = inning(0,3) + (scoreboard["Away"][`Inning ${i}`] || 0);
   }
-     console.log("1st Inning:",FirstInning.H, "-",FirstInning.A);
-     console.log("2nd Inning:",SecondInning.H, "-",SecondInning.A);
-     console.log("3rd Inning:",ThirdInning.H, "-",ThirdInning.A);
-     console.log("4th Inning:",FourthInning.H, "-",FourthInning.A);
-     console.log("5th Inning:",FifthInning.H, "-",FifthInning.A);
-     console.log("6th Inning:",SixthInning.H, "-",SixthInning.A);
-     console.log("7th Inning:",SeventhInning.H, "-",SeventhInning.A);
-     console.log("8th Inning:",EighthInning.H, "-",EighthInning.A);
-     console.log("9th Inning:",NinthInning.H, "-",NinthInning.A);
-     console.log("Final Score:",FinalScore.H, "-", FinalScore.A);
+
+  scoreboard["Home"]["Final Score"] = scoreboard["Home"][`Inning ${rounds}`];
+  scoreboard["Away"]["Final Score"] = scoreboard["Away"][`Inning ${rounds}`];
+
+return scoreboard;
+
 }
 
 console.log(scoreboard(inning, 9));
