@@ -32,10 +32,13 @@ function processFirstItem(stringList, callback) {
  * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
+ * Counter1 uses the closure because it closes out the function.
  * 
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
  *
+ * Counter 1 is preferable when you want to invoke the function using something outside of the scope. You would use counter2 when you want to reference something inside the scope of the function.
+ * 
 */
 
 // counter1 code
