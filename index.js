@@ -28,10 +28,17 @@ function processFirstItem(stringList, callback) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
+ * counter1 is outside the scope of the function while counter2 is inside of the scope of the function.
+ * 
  * 2. Which of the two uses a closure? How can you tell?
+ * 
+ * Counter1 uses the closure because it closes out the function.
+ * 
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
  *
+ * Counter 1 is preferable when you want to invoke the function using something outside of the scope. You would use counter2 when you want to reference something inside the scope of the function.
+ * 
 */
 
 // counter1 code
@@ -56,11 +63,22 @@ function counter2() {
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
+function inning(min, max){
 
-    /*Code Here*/
+    let score = Math.floor(Math.random() * (max - min));
+    return score;
 
 }
+
+console.log(inning(0,3));
+console.log(inning(0,3));
+console.log(inning(0,3));
+console.log(inning(0,3));
+console.log(inning(0,3));
+console.log(inning(0,3));
+console.log(inning(0,3));
+console.log(inning(0,3));
+console.log(inning(0,3));
 
 /* Task 3: finalScore()
 
@@ -76,11 +94,21 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(inning, rounds){
+ 
+  let finalScore = {
+    "Home": 0,
+    "Away": 0,
+  }
+    
+    for(let i=0; i < rounds; i++){
+      finalScore["Home"] += inning(0,3);
+      finalScore["Away"] += inning(0,3);        
+  }
+  return finalScore;
+}  
 
-  /*Code Here*/
-
-}
+console.log(finalScore(inning, 9));
 
 /* Task 4: 
 
@@ -89,7 +117,7 @@ Create a function called `scoreboard` that accepts the following parameters:
 (1) Callback function `inning` that you wrote above
 (2) A number of innings
 
-and returns the score at each pont in the game, like so:
+and returns the score at each point in the game, like so:
 
 1st inning: 0 - 2
 2nd inning: 1 - 3
@@ -103,8 +131,25 @@ and returns the score at each pont in the game, like so:
 
 Final Score: 6 - 10 */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(inning, rounds) {
+  let scoreboard = {
+    "Home": {},
+    "Away": {},
+  }
+
+  for (i=0; i<rounds; i++) {
+    scoreboard["Home"][`Inning ${i+1}`] = inning(0,3) + (scoreboard["Home"][`Inning ${i}`] || 0); 
+    scoreboard["Away"][`Inning ${i+1}`] = inning(0,3) + (scoreboard["Away"][`Inning ${i}`] || 0);
+  }
+
+  scoreboard["Home"]["Final Score"] = scoreboard["Home"][`Inning ${rounds}`];
+  scoreboard["Away"]["Final Score"] = scoreboard["Away"][`Inning ${rounds}`];
+
+return scoreboard;
+
 }
+
+console.log(scoreboard(inning, 9));
+
 
 
